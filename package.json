@@ -1,0 +1,13 @@
+{
+  "name": "kerim-kahraman-healthcare-consulting",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kerim Kahraman | Sağlık Sektörü Danışmanlığı — multilingual static website (TR, EN, DE, AR, RU)",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node build/build.mjs",
+    "start": "node server.mjs",
+    "dev": "node build/build.mjs && node server.mjs"
+  }
+}
