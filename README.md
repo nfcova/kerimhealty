@@ -57,6 +57,13 @@ NODE_ENV=production CONTACT_WEBHOOK_URL=https://... ALLOWED_ORIGIN=https://www.a
 ```
 
 ## Yayınlama
+
+### GitHub Pages (aktif)
+Site **https://nfcova.github.io/kerimhealty/** adresinde yayınlanır. `.github/workflows/pages.yml`, her push'ta
+siteyi `BASE_PATH=/kerimhealty` ile derleyip `gh-pages` dalına gönderir.
+GitHub Pages'te sunucu olmadığı için iletişim formu, doğrulamadan sonra mesajı **WhatsApp'ta hazır** olarak açar.
+Kendi alan adı bağlandığında `BASE_PATH` boş bırakılmalı ve `SITE_URL` alan adına ayarlanmalıdır.
+
 - **Node sunucu:** `npm start` (form API dahil).
 - **Statik hosting (Netlify, Cloudflare Pages, cPanel):** `dist/` klasörünü yükleyin ve `formEndpoint` değerini bir form servisine yönlendirin.
 

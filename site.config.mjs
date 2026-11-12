@@ -13,7 +13,7 @@
  */
 export default {
   /** Production URL without trailing slash, e.g. "https://www.example.com" */
-  siteUrl: '',
+  siteUrl: process.env.SITE_URL ?? '',
 
   contact: {
     /** International format, digits only, no "+" or spaces, e.g. "905XXXXXXXXX" */
@@ -28,8 +28,17 @@ export default {
 
   /**
    * Endpoint that receives the contact form as JSON (POST).
+ * Empty string (static hosting such as GitHub Pages) → the validated form opens
+ * WhatsApp with the message pre-filled instead.
    * The bundled `server.mjs` implements `/api/contact`.
    * You may also point this to a form service (e.g. a serverless function).
    */
-  formEndpoint: '/api/contact'
+  formEndpoint: process.env.FORM_ENDPOINT ?? '/api/contact',
+
+  /**
+   * Sub-path the site is served from, without trailing slash.
+   * "" for a domain root, "/kerimhealty" for https://nfcova.github.io/kerimhealty/
+   * Can be overridden with the BASE_PATH environment variable.
+   */
+  basePath: process.env.BASE_PATH ?? ''
 };

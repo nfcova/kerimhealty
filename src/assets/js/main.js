@@ -172,6 +172,24 @@
       website: ''
     };
 
+    // Static hosting without a form backend: hand the validated message over to WhatsApp.
+    if (!form.dataset.endpoint) {
+      if (!form.dataset.wa) { showStatus('error', msgs.server); return; }
+      var label = function (n) {
+        var l = form.querySelector('label[for="' + fieldEl(n).id + '"]');
+        return l ? l.firstChild.textContent.trim() : n;
+      };
+      var svc = fieldEl('service');
+      var lines = ['name', 'company', 'email', 'phone', 'country'].filter(function (n) { return payload[n]; })
+        .map(function (n) { return label(n) + ': ' + payload[n]; });
+      lines.push(label('service') + ': ' + svc.options[svc.selectedIndex].text, '', payload.message);
+      window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+      lastSubmit = Date.now();
+      showStatus('success', msgs.whatsapp);
+      status.focus();
+      return;
+    }
+
     setBusy(true);
     var controller = 'AbortController' in window ? new AbortController() : null;
     var timer = setTimeout(function () { if (controller) controller.abort(); }, 15000);

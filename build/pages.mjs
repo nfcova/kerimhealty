@@ -438,7 +438,7 @@ ${pageHero(ctx, { eyebrow: t.nav.contact, title: c.title, lead: c.lead })}
     <div class="form-card reveal" style="--d:.1s" id="form">
       <h2 class="h3">${f.title}</h2>
       <p class="text-2" style="margin-top:.5rem;margin-bottom:2rem;font-size:.95rem">${f.intro}</p>
-      <form class="form" id="contact-form" action="${esc(config.formEndpoint)}" method="post" novalidate data-endpoint="${esc(config.formEndpoint)}" data-lang="${lang}">
+      <form class="form" id="contact-form" action="${esc(config.formEndpoint)}" method="post" novalidate data-endpoint="${esc(config.formEndpoint)}" data-wa="${esc(cc.whatsapp)}" data-lang="${lang}">
         <script type="application/json" id="form-messages">${messages}</script>
         <div class="form__row form__row--2">
           <div class="field">

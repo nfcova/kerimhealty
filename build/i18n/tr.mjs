@@ -361,6 +361,7 @@ export default {
       success: 'Teşekkürler, mesajınız iletildi. En kısa sürede size dönüş yapılacaktır.',
       network: 'Bağlantı sorunu nedeniyle mesajınız gönderilemedi. Lütfen tekrar deneyin veya WhatsApp üzerinden ulaşın.',
       server: 'Mesajınız şu anda gönderilemedi. Lütfen daha sonra tekrar deneyin veya WhatsApp üzerinden ulaşın.',
+      whatsapp: 'WhatsApp’ta mesajınız hazırlandı. Göndermek için WhatsApp’taki “Gönder” düğmesine dokunun.',
       rate: 'Kısa süre içinde çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar deneyin.'
     }
   },

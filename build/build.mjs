@@ -22,6 +22,16 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'src');
 const DIST = join(ROOT, 'dist');
 const dict = { tr, en, de, ar, ru };
+const BASE = (config.basePath || '').replace(/\/+$/, '');
+/** Prefix root-relative URLs with the base path (e.g. GitHub Pages project sites). */
+const rebase = (text) =>
+  !BASE
+    ? text
+    : text
+        .replace(/((?:href|src|action|data-endpoint)=")\/(?!\/)/g, `$1${BASE}/`)
+        .replace(/("(?:tr|en|de|ar|ru)":")\//g, `$1${BASE}/`)
+        .replace(/url\(\/assets/g, `url(${BASE}/assets`)
+        .replace(/("(?:src|start_url)":\s*")\//g, `$1${BASE}/`);
 
 /* ---------- 1. Translation integrity check ---------- */
 function shape(obj, path = '') {
@@ -55,7 +65,7 @@ const hash = (s) => createHash('sha256').update(s).digest('hex').slice(0, 10);
 const minifyCss = (s) =>
   s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{}:;,>])\s*/g, '$1').replace(/;}/g, '}').trim();
 
-const css = minifyCss((await readFile(join(SRC, 'assets/css/fonts.css'), 'utf8')) + (await readFile(join(SRC, 'assets/css/style.css'), 'utf8')));
+const css = rebase(minifyCss((await readFile(join(SRC, 'assets/css/fonts.css'), 'utf8')) + (await readFile(join(SRC, 'assets/css/style.css'), 'utf8'))));
 const js = await readFile(join(SRC, 'assets/js/main.js'), 'utf8');
 const assets = { css: `/assets/css/site.${hash(css)}.css`, js: `/assets/js/main.${hash(js)}.js` };
 await writeFile(join(DIST, assets.css), css);
@@ -63,6 +73,8 @@ await writeFile(join(DIST, assets.js), js);
 await cp(join(SRC, 'assets/fonts'), join(DIST, 'assets/fonts'), { recursive: true });
 await cp(join(SRC, 'assets/img'), join(DIST, 'assets/img'), { recursive: true });
 for (const f of await readdir(join(SRC, 'public'))) await cp(join(SRC, 'public', f), join(DIST, f), { recursive: true });
+await writeFile(join(DIST, 'site.webmanifest'), rebase(await readFile(join(SRC, 'public/site.webmanifest'), 'utf8')));
+if (BASE) await writeFile(join(DIST, '.nojekyll'), '');
 
 /* ---------- 3. Pages ---------- */
 const renderers = {
@@ -87,7 +99,7 @@ let count = 0;
 for (const lang of LANGS) {
   for (const page of [...PAGES, '404']) {
     const ctx = { t: dict[lang], lang, page, dict, config, assets };
-    const html = fill(layout(ctx, renderers[page](ctx)), lang);
+    const html = rebase(fill(layout(ctx, renderers[page](ctx)), lang));
     if (/\{(kvkk|privacy|contact)\}|undefined/.test(html)) throw new Error(`Unresolved placeholder in ${lang}/${page}`);
     const out =
       page === '404'

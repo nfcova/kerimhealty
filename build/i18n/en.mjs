@@ -360,6 +360,7 @@ export default {
       success: 'Thank you — your message has been sent. We will get back to you shortly.',
       network: 'Your message could not be sent due to a connection problem. Please try again or contact us on WhatsApp.',
       server: 'Your message could not be sent right now. Please try again later or contact us on WhatsApp.',
+      whatsapp: 'Your message has been prepared in WhatsApp. Tap “Send” in WhatsApp to deliver it.',
       rate: 'Too many attempts in a short time. Please try again in a few minutes.'
     }
   },

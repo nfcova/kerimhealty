@@ -360,6 +360,7 @@ export default {
       success: 'Vielen Dank – Ihre Nachricht wurde übermittelt. Wir melden uns in Kürze bei Ihnen.',
       network: 'Ihre Nachricht konnte aufgrund eines Verbindungsproblems nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns per WhatsApp.',
       server: 'Ihre Nachricht konnte derzeit nicht gesendet werden. Bitte versuchen Sie es später erneut oder schreiben Sie uns per WhatsApp.',
+      whatsapp: 'Ihre Nachricht wurde in WhatsApp vorbereitet. Tippen Sie in WhatsApp auf „Senden“, um sie zu übermitteln.',
       rate: 'Zu viele Versuche in kurzer Zeit. Bitte versuchen Sie es in einigen Minuten erneut.'
     }
   },
