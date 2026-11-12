@@ -123,7 +123,7 @@ function header(ctx) {
 <header class="site-header" id="top">
   <div class="container">
     <a class="brand" href="${url(dict, lang, 'home')}" aria-label="Kerim Kahraman — ${esc(plain(t.brand.tag))}, ${esc(t.nav.home)}">
-      <span class="brand__mark" aria-hidden="true">KK</span>
+      <span class="brand__mark" aria-hidden="true">${icons.logo()}</span>
       <span class="brand__text"><span class="brand__name">Kerim Kahraman</span><span class="brand__tag">${t.brand.tag}</span></span>
     </a>
     <nav class="nav" aria-label="${esc(t.nav.main)}"><ul class="nav__list">${navLinks}</ul></nav>
@@ -169,7 +169,7 @@ function footer(ctx) {
     <div class="footer__grid">
       <div class="footer__about">
         <a class="brand" href="${url(dict, lang, 'home')}">
-          <span class="brand__mark" aria-hidden="true">KK</span>
+          <span class="brand__mark" aria-hidden="true">${icons.logo()}</span>
           <span class="brand__text"><span class="brand__name">Kerim Kahraman</span><span class="brand__tag">${t.brand.tag}</span></span>
         </a>
         <p class="footer__desc">${t.footer.desc}</p>

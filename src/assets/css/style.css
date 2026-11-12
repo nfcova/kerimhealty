@@ -325,6 +325,9 @@ p { text-wrap: pretty; }
   transition: border-color var(--t) var(--ease), color var(--t) var(--ease);
 }
 .brand:hover .brand__mark { border-color: var(--c-accent); color: var(--c-accent); }
+/* Logo (KK monogram) */
+.brand__mark { width: auto; height: 34px; border: 0; border-radius: 0; color: var(--c-text); transition: color var(--t) var(--ease); }
+.brand__logo { display: block; height: 100%; width: auto; }
 .brand__text { display: flex; flex-direction: column; min-width: 0; }
 .brand__mark { flex: none; }
 .brand__name { font-size: .95rem; font-weight: 600; letter-spacing: .01em; }
